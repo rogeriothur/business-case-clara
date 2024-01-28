@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: top10_active_users
+    description: Selects the top 10 users based on total activity count (PRs and Commits).
+
+    columns:
+      - name: actor_id
+        description: The identifier of the actor/user.
+        tests:
+          - unique
+          - not_null
+      
+      - name: username
+        description: The username of the actor/user.
+        tests:
+          - unique
+          - not_null
+      
+      - name: activity_count
+        description: The count of relevant activities (PRs and Commits).

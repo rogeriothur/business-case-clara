@@ -1,0 +1,73 @@
+version: 2
+
+sources:
+  - name: github
+    description: >
+      This is the main source containing data from GitHub, including events, actors, commits, and repositories.
+    schema: raw_data
+
+    tables:
+      - name: actors
+        description: Table containing details about GitHub actors (users).
+        columns:
+          - name: id
+            description: Actor's unique ID.
+            tests:
+              - not_null
+          
+          - name: username
+            description: Actor's GitHub username.
+            tests:
+              - not_null
+      
+      - name: commits
+        description: Table that stores information about commits on GitHub.
+        columns:
+          - name: sha
+            description: commit SHA key.
+            tests:
+              - not_null
+
+          - name: event_id
+            description: Event ID associated with the commit.
+            tests:
+              - not_null
+      
+      - name: events
+        description: Table that stores information about events on GitHub.
+        columns:
+          - name: id
+            description: Event ID.
+            tests:
+              - unique
+              - not_null
+
+          - name: type
+            description: Event type.
+            tests:
+            - accepted_values:
+                values: ['ForkEvent', 'PushEvent', 'WatchEvent', 'CreateEvent', 'DeleteEvent', 'GollumEvent', 'IssuesEvent', 'MemberEvent',
+                  'PublicEvent', 'ReleaseEvent', 'PullRequestEvent', 'IssueCommentEvent', 'CommitCommentEvent', 'PullRequestReviewCommentEvent']
+
+          - name: actor_id
+            description: ID of the actor associated with the event.
+            tests:
+              - not_null
+
+          - name: repo_id
+            description: ID of the repository associated with the event.
+            tests:
+              - not_null
+      
+      - name: repos
+        description: Table containing details about the repositories on GitHub.
+        columns:
+          - name: id
+            description: Unique repository ID.
+            tests:
+              - not_null
+
+          - name: name
+            description: Repository name.
+            tests:
+              - not_null
