@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: repo_watch_events
+    description: Counts the number of watch events in each repository.
+
+    columns:
+      - name: repo_id
+        description: The identifier of the repository.
+        tests:
+          - unique
+          - not_null
+      
+      - name: name
+        description: The name of the repository.
+        tests:
+          - not_null
+      
+      - name: watch_event_count
+        description: The count of watch events for the repository.
+        tests:
+          - positive_values

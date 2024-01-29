@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: top10_repo_commits
+    description: Selects the top 10 repositories based on commit count.
+    columns:
+      - name: repo_id
+        description: The identifier of the repository.
+        tests:
+          - unique
+          - not_null
+      
+      - name: name
+        description: The name of the repository.
+        tests:
+          - not_null
+      
+      - name: commit_count
+        description: The count of commits for the repository.

@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: repo_commits
+    description: Counts the number of commits in each repository.
+
+    columns:
+      - name: repo_id
+        description: The identifier of the repository.
+        tests:
+          - unique
+          - not_null
+      
+      - name: name
+        description: The name of the repository.
+        tests:
+          - not_null
+      
+      - name: commit_count
+        description: The count of commits for the repository.
+        tests:
+          - positive_values
