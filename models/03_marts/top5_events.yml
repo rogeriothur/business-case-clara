@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: top5_events
+    description: This model counts the quantity of GitHub events for each event type and selects the top 5 event types by frequency.
+
+    columns:
+      - name: type
+        description: The type of GitHub event.
+        tests:
+          - unique
+          - not_null
+      
+      - name: quantity
+        description: The count of events for each event type.
+        tests:
+          - not_null
+      
+      - name: watch_event_count
+        description: The count of watch events for the repository.
