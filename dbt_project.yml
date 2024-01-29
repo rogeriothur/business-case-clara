@@ -39,9 +39,9 @@ models:
   my_new_project:
     # Applies to all files under models/example/
     01_staging:
-      +materialized: table
+      +materialized: ephemeral
     02_intermediate:
-      +materialized: table
+      +materialized: view
     03_marts:
       +materialized: table
 
